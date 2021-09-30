@@ -9,22 +9,25 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Histogram {
-    private HashMap<Integer, Integer> histogram;
+    private final int[] data;
     
-    public Histogram(){
-        this.histogram = new HashMap<>();
+    public Histogram(int[] data){
+        this.data = data;
     }
 
-    public void registerValues(int[] data) {
+    public Map<Integer, Integer> getHistogram() {
+        HashMap<Integer,Integer> histogram = new HashMap<>();
         for(int key : data){
             histogram.put(key, histogram.containsKey(key) ? histogram.get(key) + 1 : 1);
         }
+        return histogram;
     }
     
-    @Override
+    
+        @Override
     public String toString(){
         String result = "";
-        Iterator<Map.Entry<Integer, Integer>> iterator = histogram.entrySet().iterator();
+        Iterator<Map.Entry<Integer, Integer>> iterator = getHistogram().entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<Integer, Integer> next = iterator.next();
             result += next.getKey() + "==>" + next.getValue() + "\n";
