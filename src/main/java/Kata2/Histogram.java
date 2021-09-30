@@ -17,12 +17,7 @@ public class Histogram {
 
     public void registerValues(int[] data) {
         for(int key : data){
-            if(histogram.containsKey(key)){
-                histogram.put(key, histogram.get(key)+ 1);
-            }
-            else{
-                histogram.put(key, 1);
-            }
+            histogram.put(key, histogram.containsKey(key) ? histogram.get(key) + 1 : 1);
         }
     }
     
